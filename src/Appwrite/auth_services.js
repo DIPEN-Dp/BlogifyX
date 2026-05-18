@@ -1,0 +1,64 @@
+import config from "../Config/conig";
+import { Client, Account, ID } from "appwrite";
+
+export class AuthService {
+  Client = new Client();
+  account;
+
+  constructor() {
+    this.Client.setEndpoint(config.appwriteURL).setProject(
+      config.appwriteProjectID,
+    );
+    this.account = new Account(this.Client);
+  }
+
+  async createAccount(email, password, name) {
+    try {
+      const UserAccount = await this.account.create(
+        ID.unique(),
+        email,
+        password,
+        name,
+      );
+
+      if (UserAccount) {
+        //Call Another method
+        return this.login(email, password);
+      } else {
+        return UserAccount;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async login(email, password) {
+    try {
+      return await this.account.createEmailPasswordSession(email, password);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getCurrentUser() {
+    try {
+      await this.account.get();
+    } catch (error) {
+      throw error;
+    }
+
+    return null;
+  }
+
+  async logout() {
+    try {
+        await this.account.deleteSessions();
+    } catch (error) {
+        console.log("Appwrite services :: Logout ::Error::",error);
+        
+    }
+  }
+}
+
+const authservice = new AuthService();
+export default authservice;
