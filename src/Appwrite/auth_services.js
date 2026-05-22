@@ -6,7 +6,9 @@ export class AuthService {
   account;
 
   constructor() {
-    this.Client.setEndpoint(config.appwriteURL).setProject(
+    this.Client
+    .setEndpoint(config.appwriteURL)
+    .setProject(
       config.appwriteProjectID,
     );
     this.account = new Account(this.Client);
@@ -42,9 +44,9 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
-      await this.account.get();
+      return await this.account.get();
     } catch (error) {
-      throw error;
+      console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
 
     return null;
