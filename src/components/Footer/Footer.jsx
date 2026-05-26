@@ -106,7 +106,7 @@ function Footer() {
               <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
                 Legals
               </h3>
-              <ul>
+              <ul >
                 <li className="mb-4">
                   <Link
                     className=" text-base font-medium text-gray-900 hover:text-gray-700"
