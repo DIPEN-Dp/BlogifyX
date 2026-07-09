@@ -107,7 +107,7 @@ function Signup() {
             />
 
             <Button type="submit" className="w-full">
-              Sign Up
+              Create Account
             </Button>
 
           </div>
