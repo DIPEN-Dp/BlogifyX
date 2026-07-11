@@ -34,33 +34,29 @@ function Login() {
   return (
     <div className="flex items-center justify-center w-full min-h-[70vh] px-4">
       <div
-        className="w-full max-w-md glass rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl relative overflow-hidden"
+        className="w-full max-w-md bg-white rounded-xl p-8 md:p-10 border border-neutral-black-200 shadow-sm relative overflow-hidden"
       >
-        {/* Glow effect */}
-        <div className="absolute -top-24 -left-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
         <div className="mb-6 flex justify-center">
           <span className="inline-block">
             <Logo width="100%" />
           </span>
         </div>
         
-        <h2 className="text-center text-2xl font-bold leading-tight text-white mb-2">
+        <h2 className="text-center font-heading text-2xl font-bold leading-tight text-neutral-black-950 mb-2">
           Welcome Back
         </h2>
-        <p className="text-center text-sm text-slate-400 mb-8">
+        <p className="text-center text-sm text-neutral-black-500 mb-8">
           Don&apos;t have an account?&nbsp;
           <Link
             to="/signup"
-            className="font-medium text-purple-400 hover:text-purple-300 transition-colors duration-200 hover:underline"
+            className="font-medium text-brand-orange-500 hover:text-brand-orange-600 transition-colors duration-150 hover:underline"
           >
             Sign Up
           </Link>
         </p>
 
         {error && (
-          <div className="bg-red-500/15 border border-red-500/30 text-red-400 text-sm py-3 px-4 rounded-xl mb-6 text-center">
+          <div className="bg-red-50 border border-red-100 text-red-600 text-sm py-3 px-4 rounded-lg mb-6 text-center font-medium">
             {error}
           </div>
         )}

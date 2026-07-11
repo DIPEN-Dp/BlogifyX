@@ -7,6 +7,7 @@ import RTE from "../RTE";
 import appwriteService from "../../Appwrite/database_services";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Pencil, PenLine, FolderOpen } from "lucide-react";
 
 function PostForm({ post }) {
   const [error, setError] = React.useState("");
@@ -87,16 +88,14 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto glass p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden">
-      {/* Decorative Blur */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      <h1 className="text-2xl font-bold text-white mb-6 pl-1 flex items-center gap-2">
-        <span>{post ? "✏️ Edit Post" : "✍️ Create a New Post"}</span>
+    <div className="w-full max-w-5xl mx-auto bg-white p-6 md:p-8 rounded-xl border border-neutral-black-200 shadow-sm relative overflow-hidden">
+      <h1 className="text-2xl font-bold font-heading text-neutral-black-950 mb-6 pl-1 flex items-center gap-2">
+        {post ? <Pencil className="w-6 h-6 text-brand-orange-500" /> : <PenLine className="w-6 h-6 text-brand-orange-500" />}
+        <span>{post ? "Edit Post" : "Create a New Post"}</span>
       </h1>
 
       {error && (
-        <div className="bg-red-500/15 border border-red-500/30 text-red-400 text-sm py-3 px-4 rounded-xl mb-6">
+        <div className="bg-red-550/15 bg-red-50 border border-red-200 text-red-600 text-sm py-3 px-4 rounded-lg mb-6 font-medium">
           {error}
         </div>
       )}
@@ -109,7 +108,7 @@ function PostForm({ post }) {
               placeholder="Give your masterpiece a title..."
               {...register("title", { required: true })}
             />
-            {errors.title && <p className="text-red-400 text-xs mt-1 pl-1">Title is required</p>}
+            {errors.title && <p className="text-red-500 text-xs mt-1 pl-1 font-medium">Title is required</p>}
           </div>
 
           <div>
@@ -121,7 +120,7 @@ function PostForm({ post }) {
                 setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
               }}
             />
-            {errors.slug && <p className="text-red-400 text-xs mt-1 pl-1">Slug is required</p>}
+            {errors.slug && <p className="text-red-500 text-xs mt-1 pl-1 font-medium">Slug is required</p>}
           </div>
 
           <div className="relative">
@@ -130,27 +129,27 @@ function PostForm({ post }) {
         </div>
 
         <div className="w-full lg:w-1/3 px-3 mt-6 lg:mt-0 space-y-5">
-          <div className="glass p-5 rounded-2xl border border-white/5 space-y-5">
+          <div className="bg-neutral-black-50/50 p-5 rounded-xl border border-neutral-black-100 space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Featured Image</label>
-              <div className="relative border border-dashed border-white/10 hover:border-purple-500/50 rounded-xl p-4 text-center cursor-pointer transition-colors duration-200">
+              <label className="block text-sm font-medium text-neutral-black-700 mb-2">Featured Image</label>
+              <div className="relative border border-dashed border-neutral-black-200 hover:border-brand-orange-500 rounded-lg p-4 text-center cursor-pointer transition-colors duration-200 bg-white">
                 <input
                   type="file"
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   accept="image/png, image/jpg, image/jpeg, image/gif"
                   {...register("image", { required: !post })}
                 />
-                <div className="text-slate-400 text-xs space-y-1">
-                  <span className="block text-xl">📁</span>
-                  <span className="block font-medium text-slate-300">Choose file or drag here</span>
-                  <span className="block text-[10px] text-slate-500">Supports PNG, JPG, JPEG, GIF</span>
+                <div className="text-neutral-black-500 text-xs flex flex-col items-center justify-center space-y-1">
+                  <FolderOpen className="w-8 h-8 text-brand-orange-500 mb-2" />
+                  <span className="block font-medium text-neutral-black-700">Choose file or drag here</span>
+                  <span className="block text-[10px] text-neutral-black-400">Supports PNG, JPG, JPEG, GIF</span>
                 </div>
               </div>
-              {errors.image && <p className="text-red-400 text-xs mt-1.5 pl-1">Featured image is required</p>}
+              {errors.image && <p className="text-red-500 text-xs mt-1.5 pl-1 font-medium">Featured image is required</p>}
             </div>
 
             {post && post.featuredimage && (
-              <div className="w-full overflow-hidden rounded-xl border border-white/5">
+              <div className="w-full overflow-hidden rounded-lg border border-neutral-black-200">
                 <img
                   src={appwriteService.getFilePreview(post.featuredimage)}
                   alt={post.title}
@@ -165,7 +164,7 @@ function PostForm({ post }) {
               {...register("status", { required: true })}
             />
 
-            <Button type="submit" className="w-full py-3 text-sm font-bold shadow-lg mt-4">
+            <Button type="submit" className="w-full py-3 text-sm font-bold shadow-sm mt-4">
               {post ? "Update Article" : "Publish Article"}
             </Button>
           </div>

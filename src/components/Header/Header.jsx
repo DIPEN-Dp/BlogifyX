@@ -19,39 +19,36 @@ function Header() {
   ];
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 px-4">
-      <div className="max-w-6xl mx-auto">
-        <nav className="flex items-center justify-between px-6 py-3.5 rounded-2xl glass shadow-xl shadow-black/30 border border-white/10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-black-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <nav className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link to="/" className="hover:opacity-90 transition-opacity">
+          <Link to="/" className="hover:opacity-80 transition-opacity">
             <Logo width="120px" />
           </Link>
 
           {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-1">
+          <ul className="hidden md:flex items-center gap-2">
             {navItems.map((item) => {
               if (!item.active) return null;
               const isActive = location.pathname === item.slug;
               return (
-                <li key={item.name}>
+                <li key={item.name} className="relative">
                   <button
                     onClick={() => navigate(item.slug)}
-                    className={`px-4 py-1.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer relative ${
+                    className={`px-4 py-2 rounded-lg text-sm transition-all duration-150 cursor-pointer ${
                       isActive 
-                        ? "text-white bg-white/10" 
-                        : "text-slate-300 hover:text-white hover:bg-white/5"
+                        ? "text-brand-orange-600 bg-brand-orange-50/50 font-bold " 
+                        : "text-neutral-black-600 hover:text-brand-orange-500 hover:bg-neutral-black-50 font-medium "
                     }`}
                   >
                     {item.name}
-                    {isActive && (
-                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-purple-500 shadow-[0_0_8px_#8b5cf6]" />
-                    )}
                   </button>
                 </li>
               );
             })}
             {authStatus && (
-              <li className="ml-2">
+              <li className="ml-4">
                 <LogoutBtn />
               </li>
             )}
@@ -59,18 +56,18 @@ function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col gap-1 text-slate-300 hover:text-white transition-colors p-2"
+            className="md:hidden flex flex-col gap-1.5 text-neutral-black-700 hover:text-brand-orange-500 transition-colors p-2"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <div className={`w-5 h-0.5 bg-current transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+            <div className={`w-5 h-0.5 bg-current transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
             <div className={`w-5 h-0.5 bg-current transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-            <div className={`w-5 h-0.5 bg-current transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            <div className={`w-5 h-0.5 bg-current transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         </nav>
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden mt-2 glass rounded-2xl p-4 flex flex-col gap-1.5 border border-white/10 shadow-xl">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-neutral-black-100 py-4 px-6 flex flex-col gap-2 shadow-sm">
             {navItems.map((item) => {
               if (!item.active) return null;
               const isActive = location.pathname === item.slug;
@@ -78,10 +75,10 @@ function Header() {
                 <button
                   key={item.name}
                   onClick={() => { navigate(item.slug); setMenuOpen(false); }}
-                  className={`text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`text-left px-4 py-3 rounded-lg text-sm transition-all duration-150 ${
                     isActive 
-                      ? "text-white bg-white/10" 
-                      : "text-slate-300 hover:text-white hover:bg-white/5"
+                      ? "text-brand-orange-600 bg-brand-orange-50 font-bold" 
+                      : "text-neutral-black-600 hover:text-brand-orange-500 hover:bg-neutral-black-50 font-medium hover:font-bold"
                   }`}
                 >
                   {item.name}
@@ -89,7 +86,7 @@ function Header() {
               );
             })}
             {authStatus && (
-              <div className="pt-2 border-t border-white/5 mt-1">
+              <div className="pt-3 border-t border-neutral-black-100 mt-2 px-4">
                 <LogoutBtn />
               </div>
             )}
