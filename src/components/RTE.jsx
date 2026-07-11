@@ -1,6 +1,7 @@
 import React from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { Controller, controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import config from "../Config/conig";
 
 function RTE({ name, control, label, defaultValue = "" }) {
   return (
@@ -10,8 +11,10 @@ function RTE({ name, control, label, defaultValue = "" }) {
       <Controller
         name={name}
         control={control}
-        render={({ field: { onchange } }) => (
+        render={({ field: { onChange, value } }) => (
           <Editor
+            tinymceScriptSrc="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"
+            value={value || ""}
             initialValue={defaultValue}
             init={{
               height: 500,
@@ -40,7 +43,7 @@ function RTE({ name, control, label, defaultValue = "" }) {
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
-            onEditorChange={onchange}
+            onEditorChange={onChange}
           />
         )}
       />

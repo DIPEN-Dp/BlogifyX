@@ -7,10 +7,10 @@ export class AuthService {
 
   constructor() {
     this.Client
-    .setEndpoint(config.appwriteURL)
-    .setProject(
-      config.appwriteProjectID,
-    );
+      .setEndpoint(config.appwriteURL)
+      .setProject(
+        config.appwriteProjectID,
+      );
     this.account = new Account(this.Client);
   }
 
@@ -54,10 +54,10 @@ export class AuthService {
 
   async logout() {
     try {
-        await this.account.deleteSessions();
+      await this.account.deleteSessions();
     } catch (error) {
-        console.log("Appwrite services :: Logout ::Error::",error);
-        
+      console.log("Appwrite services :: Logout ::Error::", error);
+
     }
   }
 }

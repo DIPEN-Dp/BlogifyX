@@ -7,11 +7,11 @@ export class DatabaseService {
   bucket; //storage bucket
 
   constructor() {
-    this.Client.setEndpoint(config.appwriteURL).setProject(
+    this.client.setEndpoint(config.appwriteURL).setProject(
       config.appwriteProjectID,
     );
-    this.Databases = new Databases(this.Client);
-    this.bucket = new Storage(this.Client);
+    this.Databases = new Databases(this.client);
+    this.bucket = new Storage(this.client);
   }
   async createDocument({
     title,
@@ -29,13 +29,14 @@ export class DatabaseService {
         {
           title,
           content,
-          featuredImage,
+          featuredimage: featuredImage,
           status,
-          userId,
+          userid: userId,
         },
       );
     } catch (error) {
       console.log("Appwrite sevices :: CreatePost :: Error", error);
+      throw error;
     }
   }
   async updatePost(slug, { title, content, featuredImage, status }) {
@@ -47,7 +48,7 @@ export class DatabaseService {
         {
           title,
           content,
-          featuredImage,
+          featuredimage: featuredImage,
           status,
         },
       );
@@ -119,11 +120,12 @@ export class DatabaseService {
         return false;
     }
 }
-async getFilePreview(fileid){
-     return this.bucket.getFilePreview(
+getFilePreview(fileid){
+    if(!fileid) return "";
+    return this.bucket.getFilePreview(
         config.appwriteBucketID,
         fileid,
-     )
+    ).toString()
 }
 }
 const databaseService = new DatabaseService();
