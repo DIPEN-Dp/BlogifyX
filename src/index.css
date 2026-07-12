@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange-50: #fff6ec;
+  --color-brand-orange-100: #ffebd3;
+  --color-brand-orange-200: #ffd2a5;
+  --color-brand-orange-300: #ffb36d;
+  --color-brand-orange-400: #ff8832;
+  --color-brand-orange-500: #ff660a;
+  --color-brand-orange-600: #ff4f00;
+  --color-brand-orange-700: #cc3602;
+  --color-brand-orange-800: #a12c0b;
+  --color-brand-orange-900: #82260c;
+  --color-brand-orange-950: #461004;
+
+  --color-neutral-black-50: #fafafa;
+  --color-neutral-black-100: #f5f5f5;
+  --color-neutral-black-200: #e6e6e6;
+  --color-neutral-black-300: #d6d6d6;
+  --color-neutral-black-400: #a5a5a5;
+  --color-neutral-black-500: #767676;
+  --color-neutral-black-600: #575757;
+  --color-neutral-black-700: #434343;
+  --color-neutral-black-800: #292929;
+  --color-neutral-black-900: #1a1a1a;
+  --color-neutral-black-950: #000000;
+
+  --font-heading: "Fraunces", serif;
+  --font-body: "Open Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #ffffff;
+  color: var(--color-neutral-black-800);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography custom styles ── */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ── Gradient text replacement for editorial style ── */
+.gradient-text {
+  color: var(--color-brand-orange-500);
+}
+
+/* ── Custom Editorial Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-black-50);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-black-200);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-black-400);
+}
+
+/* ── Prose-like style for parsed html-react-parser output ── */
+.editorial-prose {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.8;
+  color: var(--color-neutral-black-800);
+}
+.editorial-prose p {
+  margin-bottom: 1.5rem;
+}
+.editorial-prose h1, .editorial-prose h2, .editorial-prose h3, .editorial-prose h4 {
+  font-family: var(--font-heading);
+  color: var(--color-neutral-black-950);
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.editorial-prose h1 { font-size: 2rem; }
+.editorial-prose h2 { font-size: 1.75rem; }
+.editorial-prose h3 { font-size: 1.5rem; }
+.editorial-prose ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.editorial-prose ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.editorial-prose li {
+  margin-bottom: 0.5rem;
+}
+.editorial-prose blockquote {
+  border-left: 4px solid var(--color-brand-orange-500);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--color-neutral-black-600);
+  margin: 1.5rem 0;
+}
+.editorial-prose img {
+  border-radius: 0.75rem;
+  margin: 2rem 0;
+  max-width: 100%;
+}
+.editorial-prose code {
+  font-family: monospace;
+  background-color: var(--color-neutral-black-50);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+.editorial-prose pre {
+  background-color: var(--color-neutral-black-900);
+  color: var(--color-neutral-black-100);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.editorial-prose pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.95em;
+}
+
+/* ── Footer Hover Fix ── */
+.footer-link:hover, .footer-link:hover * {
+  color: #ff660a !important;
+}
