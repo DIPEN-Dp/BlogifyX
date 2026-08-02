@@ -1,17 +1,25 @@
 import React from 'react'
 
 function Button({
-    children,
-    type="button",
-    bgColor="bg-brand-orange-500 hover:bg-brand-orange-600",
-    textColor="text-white",
-    className='',
-    ...props
+  children,
+  type = "button",
+  variant = "primary",   // primary | secondary | danger | ghost
+  className = '',
+  ...props
 }) {
+  const variants = {
+    primary: "btn-primary",
+    secondary: "btn-secondary",
+    danger: "btn-danger",
+    ghost: "btn-secondary",
+  };
+
+  const cls = variants[variant] || variants.primary;
+
   return (
     <button
       type={type}
-      className={`px-6 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200 cursor-pointer shadow-sm ${bgColor} ${textColor} ${className}`}
+      className={`${cls} ${className}`}
       {...props}
     >
       {children}

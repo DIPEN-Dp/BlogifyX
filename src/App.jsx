@@ -15,7 +15,7 @@ function App() {
       .getCurrentUser()
       .then((userData) => {
         if (userData) {
-          dispatch(login({userData}));
+          dispatch(login({ userData }));
         } else {
           dispatch(logout());
         }
@@ -24,21 +24,20 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="min-h-screen relative overflow-x-hidden bg-white text-neutral-black-800">
-      {/* App layout */}
+    <div className="min-h-screen relative overflow-x-hidden" style={{ backgroundColor: '#0B0B0B', color: '#FFFFFF' }}>
       <div className="relative z-10 w-full flex flex-col min-h-screen">
         <Header />
-        <main className="flex-1 pt-24 pb-12">
+        <main className="flex-1 pt-20 pb-12">
           <Outlet />
         </main>
         <Footer />
       </div>
     </div>
   ) : (
-    <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0B0B0B' }}>
       <div className="flex flex-col items-center gap-4">
-        <div className="w-10 h-10 rounded-full border-2 border-brand-orange-500 border-t-transparent animate-spin" />
-        <p className="text-neutral-black-500 text-sm font-medium">Loading...</p>
+        <div className="spinner-lime" />
+        <p className="text-sm font-medium" style={{ color: '#6B7280' }}>Loading BlogifyX...</p>
       </div>
     </div>
   );

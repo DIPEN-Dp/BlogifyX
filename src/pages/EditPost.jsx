@@ -20,8 +20,9 @@ function EditPost() {
       navigate("/");
     }
   }, [slug, navigate]);
+
   return post ? (
-    <div className="py-12 min-h-[80vh] flex flex-col justify-center">
+    <div className="py-12" style={{ backgroundColor: '#0B0B0B', minHeight: '80vh' }}>
       <Container>
         <PostForm post={post} />
       </Container>
